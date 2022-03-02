@@ -2,6 +2,7 @@ import string
 
 import pandas as pd
 
+
 def get_and_clean_data():
 
     data = pd.read_csv('src/resources/Food Ingredients and Recipe Dataset with Image Name Mapping.csv')
@@ -11,13 +12,13 @@ def get_and_clean_data():
 
     # Title
     title = data['Title'].astype(str)
-    cleaned_title = title.apply(lambda s: s.translate(str.maketrans('', '', string.punctuation + u'\xa0')))
+    cleaned_title = title.apply(lambda s: s.translate(str.maketrans ('','', '([$\'_&+,:;=?@\[\]#|<>.^*()%\\!"-])' +U'\xa8')))
     cleaned_title = cleaned_title.apply(lambda s: s.lower())
     cleaned_title = cleaned_title.apply(lambda s: s.translate(str.maketrans(string.whitespace, ' ' * len(string.whitespace), '')))
 
     # Instructions
     instructions = data['Instructions'].astype(str)
-    cleaned_instructions = instructions.apply(lambda s: s.translate(str.maketrans('', '', string.punctuation + u'\xa0')))
+    cleaned_instructions = instructions.apply(lambda s: s.translate(str.maketrans ('','', '([$\'_&+,:;=?@\[\]#|<>.^*()%\\!"-])' +U'\xa8')))
     cleaned_instructions = cleaned_instructions.apply(lambda s: s.lower())
     cleaned_instructions = cleaned_instructions.apply(lambda s: s.translate(str.maketrans(string.whitespace, ' ' * len(string.whitespace), '')))
 
@@ -26,7 +27,7 @@ def get_and_clean_data():
 
     # Ingredients
     ingredients = data['Cleaned_Ingredients'].astype(str)
-    cleaned_ingredients = ingredients.apply(lambda s: s.translate(str.maketrans('', '', string.punctuation + u'\xa0')))
+    cleaned_ingredients = ingredients.apply(lambda s: s.translate(str.maketrans ('','', '([$\'_&+,:;=?@\[\]#|<>.^*()%\\!"-])' +U'\xa8')))
     cleaned_ingredients = cleaned_ingredients.apply(lambda s: s.lower())
     cleaned_ingredients = cleaned_ingredients.apply(lambda s: s.translate(str.maketrans(string.whitespace, ' ' * len(string.whitespace), '')))
 
