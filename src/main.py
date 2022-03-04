@@ -47,7 +47,7 @@ def tfidf_scoring_by_title(query):
     csv_file = "src/resources/new Food Ingredients and Recipe.csv"
     data = pd.read_csv(csv_file)
     all_data = pd.DataFrame(data, columns=['Title', 'Image_Name', 'Ingredients'])
-    tfidf_data_ranking = []
+    rank_list = []
     vectorizer = TfidfVectorizer()
     X = vectorizer.fit_transform(all_data['Title'].apply(lambda x: np.str_(x)))
     query_vectorizer = vectorizer.transform([query])
@@ -63,4 +63,27 @@ def tfidf_scoring_by_title(query):
             "Score": results[i]
             }
         )
-    return tfidf_data_ranking
+    return rank_list
+
+def tfidf_scoring_by_ingredients(query):
+
+    csv_file = "src/resources/new Food Ingredients and Recipe.csv"
+    data = pd.read_csv(csv_file)
+    all_data = pd.DataFrame(data, columns=['Title', 'Image_Name', 'Ingredients'])
+    rank_list = []
+    vectorizer = TfidfVectorizer()
+    X = vectorizer.fit_transform(all_data['Ingredients'].apply(lambda x: np.str_(x)))
+    query_vectorizer = vectorizer.transform([query])
+    results = cosine_similarity(X, query_vectorizer).reshape((-1,))
+    rank = 0
+    for i in results.argsort()[-10:][::-1]:
+        rank = rank + 1
+        rank_list.append({
+            "Rank": rank,
+            "Title": all_data.iloc[i, 0],
+            "Image": all_data.iloc[i, 1],
+            "Ingredient": all_data.iloc[i, 2],
+            "Score": results[i]
+            }
+        )
+    return rank_list
