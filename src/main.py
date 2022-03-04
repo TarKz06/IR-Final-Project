@@ -55,7 +55,7 @@ def tfidf_scoring_by_title(query):
     rank = 0
     for i in results.argsort()[-10:][::-1]:
         rank = rank + 1
-        tfidf_data_ranking.append({
+        rank_list.append({
             "Rank": rank,
             "Title": all_data.iloc[i, 0],
             "Image": all_data.iloc[i, 1],
