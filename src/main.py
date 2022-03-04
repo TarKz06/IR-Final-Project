@@ -44,56 +44,33 @@ def get_and_clean_data():
     except:
         print("Error")
 
-def tfidf_scoring_by_title(query):
-
-    csv_file = "src/resources/new Food Ingredients and Recipe.csv"
-    data = pd.read_csv(csv_file)
-    all_data = pd.DataFrame(data, columns=['Title', 'Image_Name', 'Ingredients'])
-    rank_list = []
-    vectorizer = TfidfVectorizer()
-    X = vectorizer.fit_transform(all_data['Title'].apply(lambda x: np.str_(x)))
-    query_vectorizer = vectorizer.transform([query])
-    results = cosine_similarity(X, query_vectorizer).reshape((-1,))
-    rank = 0
-    for i in results.argsort()[-10:][::-1]:
-        rank = rank + 1
-        rank_list.append({
-            "Rank": rank,
-            "Title": all_data.iloc[i, 0],
-            "Image": all_data.iloc[i, 1],
-            "Ingredient": all_data.iloc[i, 2],
-            "Score": results[i]
-            }
-        )
-    return rank_list
-
-def tfidf_scoring_by_ingredients(query):
-
-    csv_file = "src/resources/new Food Ingredients and Recipe.csv"
-    data = pd.read_csv(csv_file)
-    all_data = pd.DataFrame(data, columns=['Title', 'Image_Name', 'Ingredients'])
-    rank_list = []
-    vectorizer = TfidfVectorizer()
-    X = vectorizer.fit_transform(all_data['Ingredients'].apply(lambda x: np.str_(x)))
-    query_vectorizer = vectorizer.transform([query])
-    results = cosine_similarity(X, query_vectorizer).reshape((-1,))
-    rank = 0
-    for i in results.argsort()[-10:][::-1]:
-        rank = rank + 1
-        rank_list.append({
-            "Rank": rank,
-            "Title": all_data.iloc[i, 0],
-            "Image": all_data.iloc[i, 1],
-            "Ingredient": all_data.iloc[i, 2],
-            "Score": results[i]
-            }
-        )
-    return rank_list
-  
   # Read csv file
 cleanData = pd.read_csv('src/resources/new Food Ingredients and Recipe.csv')
 
-#Search TF-IDF
+#Search TF-IDF for Title
+def tf_idfByTitle(Input):
+    vectorizer = TfidfVectorizer()
+    data_new = pd.DataFrame(cleanData, columns=['Title', 'Ingredients', 'Instructions', 'Image_Name'])
+    findTarg = vectorizer.fit_transform(cleanData['Title'].apply(lambda x: np.str_(x)))
+    query_vec = vectorizer.transform([Input])
+    results = cosine_similarity(findTarg, query_vec).reshape((-1,))
+    count = 0
+    dataTfidf = []
+    for i in results.argsort()[:][::-1]:
+        if (results[i] > 0.1):
+            count += 1
+            dataTfidf.append({
+                "Number": count,
+                "Title": data_new.iloc[i, 0],
+                "Ingredients": data_new.iloc[i, 1],
+                "Instructions": data_new.iloc[i, 2],
+                "Image_Name": data_new.iloc[i, 3],
+                "Score": results[i]
+            })
+
+    return dataTfidf
+
+#Search TF-IDF for Ingredient
 def tf_idfByIng(Input):
     vectorizer = TfidfVectorizer()
     data_new = pd.DataFrame(cleanData, columns=['Title','Ingredients','Instructions','Image_Name'])
