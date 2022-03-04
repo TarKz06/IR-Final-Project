@@ -33,4 +33,9 @@ def get_and_clean_data():
 
     gen_clean_csv = {"Number": num,"Title": cleaned_title ,"Instructions":cleaned_instructions,"Image_Name": image_name,"Ingredients": cleaned_ingredients}
     df = pd.DataFrame(data=gen_clean_csv)
-    df.to_csv("src/resources/new Food Ingredients and Recipe.csv", encoding="utf8", index=False)
+
+    try:
+        df.to_csv("src/resources/new Food Ingredients and Recipe.csv", encoding="utf8", index=False)
+        print('New csv : new Food Ingredients and Recipe.csv')
+    except:
+        print("Error")
