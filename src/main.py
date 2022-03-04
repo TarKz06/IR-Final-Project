@@ -35,9 +35,62 @@ def get_and_clean_data():
 
     gen_clean_csv = {"Number": num,"Title": cleaned_title ,"Instructions":cleaned_instructions,"Image_Name": image_name,"Ingredients": cleaned_ingredients}
     df = pd.DataFrame(data=gen_clean_csv)
-    df.to_csv("src/resources/new Food Ingredients and Recipe.csv", encoding="utf8", index=False)
 
-# Read csv file
+    df.to_csv("src/resources/new Food Ingredients and Recipe.csv", encoding="utf8", index=False)
+    
+    try:
+        df.to_csv("src/resources/new Food Ingredients and Recipe.csv", encoding="utf8", index=False)
+        print('New csv : new Food Ingredients and Recipe.csv')
+    except:
+        print("Error")
+
+def tfidf_scoring_by_title(query):
+
+    csv_file = "src/resources/new Food Ingredients and Recipe.csv"
+    data = pd.read_csv(csv_file)
+    all_data = pd.DataFrame(data, columns=['Title', 'Image_Name', 'Ingredients'])
+    rank_list = []
+    vectorizer = TfidfVectorizer()
+    X = vectorizer.fit_transform(all_data['Title'].apply(lambda x: np.str_(x)))
+    query_vectorizer = vectorizer.transform([query])
+    results = cosine_similarity(X, query_vectorizer).reshape((-1,))
+    rank = 0
+    for i in results.argsort()[-10:][::-1]:
+        rank = rank + 1
+        rank_list.append({
+            "Rank": rank,
+            "Title": all_data.iloc[i, 0],
+            "Image": all_data.iloc[i, 1],
+            "Ingredient": all_data.iloc[i, 2],
+            "Score": results[i]
+            }
+        )
+    return rank_list
+
+def tfidf_scoring_by_ingredients(query):
+
+    csv_file = "src/resources/new Food Ingredients and Recipe.csv"
+    data = pd.read_csv(csv_file)
+    all_data = pd.DataFrame(data, columns=['Title', 'Image_Name', 'Ingredients'])
+    rank_list = []
+    vectorizer = TfidfVectorizer()
+    X = vectorizer.fit_transform(all_data['Ingredients'].apply(lambda x: np.str_(x)))
+    query_vectorizer = vectorizer.transform([query])
+    results = cosine_similarity(X, query_vectorizer).reshape((-1,))
+    rank = 0
+    for i in results.argsort()[-10:][::-1]:
+        rank = rank + 1
+        rank_list.append({
+            "Rank": rank,
+            "Title": all_data.iloc[i, 0],
+            "Image": all_data.iloc[i, 1],
+            "Ingredient": all_data.iloc[i, 2],
+            "Score": results[i]
+            }
+        )
+    return rank_list
+  
+  # Read csv file
 cleanData = pd.read_csv('src/resources/new Food Ingredients and Recipe.csv')
 
 #Search TF-IDF
@@ -62,4 +115,5 @@ def tf_idfByIng(Input):
             })
 
     return dataTfidf
+
 
