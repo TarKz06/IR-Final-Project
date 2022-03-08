@@ -10,12 +10,6 @@
 </h2>
 {% endif %}
 {% if current_user.is_authenticated %}
-<h1 class="title">
-  Food suggestion Today!!
-</h1>
-<h2 class="subtitle">
-  Please enjoy
-</h2>
 <ul>
     <div class="columns	">
         <div class="column">
@@ -31,8 +25,7 @@
         {{item.Title}}
       </div>
       <div class="column">
-        <img src="../src/resources/Food_Images/{{item.Image_Name}}">
-
+        <img src="../static/Food_Images/{{item.Image_Name}}.jpg">
       </div>
     </div>
     {% endfor %}

@@ -93,4 +93,16 @@ def tf_idfByIng(Input):
 
     return dataTfidf
 
+def exampleoutput(dataFrame):
+    print("gen ex ")
+    data = dataFrame
+    temp = []
+    for i in range(10):
+        data.at[i, 'Image_Name'] = data.at[i, 'Image_Name']
+        temp.append({"Number": data.at[i, 'Number'],
+                    "Title": data.at[i, 'Title'],
+                    "Image_Name": data.at[i, 'Image_Name']})
+    print('finish example')
+    return temp
+
 
