@@ -1,12 +1,14 @@
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-
+from .backend import get_and_clean_data
+from .backend import exampleoutput
+dataframe = get_and_clean_data()
+dataexanple = exampleoutput(dataframe)
 db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
-
     app.config['SECRET_KEY'] = 'thisismysecretkeydonotstealit'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 
@@ -27,5 +29,9 @@ def create_app():
 
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
+
+    @app.before_first_request
+    def create_table():
+        db.create_all()
 
     return app

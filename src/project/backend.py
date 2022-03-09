@@ -46,16 +46,13 @@ def get_and_clean_data():
         print("Error")
 
 def exampleoutput(dataFrame):
-    print("gen ex ")
+    print("create example output...")
     data = dataFrame
-    temp = []
+    tempJson = []
     for i in range(10):
-        data.at[i, 'Image_Name'] = data.at[i, 'Image_Name']
-        temp.append({"Number": data.at[i, 'Number'],
-                    "Title": data.at[i, 'Title'],
-                    "Image_Name": data.at[i, 'Image_Name']})
-    print('finish example')
-    return temp
-
-
-
+        data.at[i, 'Image_Name'] = data.at[i, 'Image_Name'] + ".jpg"
+        tempJson.append({"Number": data.at[i, 'Number'],
+                         "Title": data.at[i, 'Title'],
+                         "Image_Name": data.at[i, 'Image_Name']})
+    print('success create json example')
+    return tempJson

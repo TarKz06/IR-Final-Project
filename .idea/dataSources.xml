@@ -8,7 +8,7 @@
       <jdbc-url>jdbc:sqlite:F:\SE\Y3T2\953481 701-000(264) Introduction to Information Retrieval\lecture\IR-Final-Project\src\Frontend\db.sqlite3</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="db [2]" uuid="f9daba93-fd5e-4334-8f9b-32f6b4384d37">
+    <data-source source="LOCAL" name="db [2]" uuid="bb387c1c-e467-42a5-a343-d9446aa5edf6">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>

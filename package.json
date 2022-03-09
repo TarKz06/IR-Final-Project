@@ -1,0 +1,11 @@
+{
+  "name": "IR-Final-Project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/TarKz06/IR-Final-Project.git",
+  "author": "TarKz06 <khematat_s@elearning.cmu.ac.th>",
+  "license": "MIT",
+  "dependencies": {
+    "tailwindcss": "^3.0.23"
+  }
+}
