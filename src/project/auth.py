@@ -72,7 +72,7 @@ def add_favorite():
 
     favorite = Favorite.query.filter_by(foodTitle=foodTitle,userID=userID).first()
     if favorite :
-        flash('This menu already exists.')
+        flash('Already have in list')
         return redirect(url_for('main.homeindex'))
     new_favorite = Favorite(
         userID=userID,
