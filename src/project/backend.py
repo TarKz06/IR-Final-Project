@@ -3,11 +3,12 @@ import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from spellchecker import SpellChecker
 
 
 def get_and_clean_data():
 
-    data = pd.read_csv('../src/resources/Food Ingredients and Recipe Dataset with Image Name Mapping.csv')
+    data = pd.read_csv('src/resources/Food Ingredients and Recipe Dataset with Image Name Mapping.csv')
 
     # Number id
     num = data['Number']
@@ -36,14 +37,76 @@ def get_and_clean_data():
     gen_clean_csv = {"Number": num,"Title": cleaned_title ,"Instructions":cleaned_instructions,"Image_Name": image_name,"Ingredients": cleaned_ingredients}
     df = pd.DataFrame(data=gen_clean_csv)
 
-    df.to_csv("../src/resources/new Food Ingredients and Recipe.csv", encoding="utf8", index=False)
+    df.to_csv("src/resources/new Food Ingredients and Recipe.csv", encoding="utf8", index=False)
 
     try:
-        df.to_csv("../src/resources/new Food Ingredients and Recipe.csv", encoding="utf8", index=False)
+        df.to_csv("src/resources/new Food Ingredients and Recipe.csv", encoding="utf8", index=False)
         print('New csv : new Food Ingredients and Recipe.csv')
         return df
     except:
         print("Error")
+
+
+# Read csv file
+cleanData = pd.read_csv("src/resources/new Food Ingredients and Recipe.csv")
+
+#Search TF-IDF for Title
+def tf_idfByTitle(Input):
+    vectorizer = TfidfVectorizer()
+    data_new = pd.DataFrame(cleanData, columns=['Title', 'Ingredients', 'Instructions', 'Image_Name'])
+    findTarg = vectorizer.fit_transform(cleanData['Title'].apply(lambda x: np.str_(x)))
+    spell = SpellCheck(Input)
+    query_vec = vectorizer.transform([spell])
+    results = cosine_similarity(findTarg, query_vec).reshape((-1,))
+    count = 0
+    dataTfidf = []
+    for i in results.argsort()[:][::-1]:
+        if (results[i] > 0.1):
+            count += 1
+            dataTfidf.append({
+                "Number": count,
+                "Title": data_new.iloc[i, 0],
+                "Ingredients": data_new.iloc[i, 1],
+                "Instructions": data_new.iloc[i, 2],
+                "Image_Name": data_new.iloc[i, 3],
+                "Score": results[i]
+            })
+
+    return dataTfidf
+
+#Search TF-IDF for Ingredient
+def tf_idfByIng(Input):
+    vectorizer = TfidfVectorizer()
+    data_new = pd.DataFrame(cleanData, columns=['Title','Ingredients','Instructions','Image_Name'])
+    findTarg = vectorizer.fit_transform(cleanData['Ingredients'].apply(lambda x: np.str_(x)))
+    spell = SpellCheck(Input)
+    query_vec = vectorizer.transform([spell])
+    results = cosine_similarity(findTarg, query_vec).reshape((-1,))
+    count = 0
+    dataTfidf = []
+    for i in results.argsort()[:][::-1]:
+        if (results[i]>0.1):
+            count += 1
+            dataTfidf.append({
+                "Number": count,
+                "Title": data_new.iloc[i, 0],
+                "Ingredients": data_new.iloc[i, 1],
+                "Instructions": data_new.iloc[i, 2],
+                "Image_Name": data_new.iloc[i, 3],
+                "Score": results[i]
+            })
+
+    return dataTfidf
+
+# Spell checker
+def SpellCheck(Input):
+    spellaray = []
+    spell = SpellChecker()
+    dataSpell = Input.split()
+    for i in dataSpell:
+        spellaray.append(spell.correction(i))
+    spellaray = ' '.join(spellaray)
+    return spellaray
 
 def exampleoutput(dataFrame):
     print("gen ex ")
