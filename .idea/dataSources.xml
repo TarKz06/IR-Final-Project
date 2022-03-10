@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="db" uuid="e0a30810-9625-49ac-8ef1-37cdd025e5b1">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:F:\SE\Y3T2\953481 701-000(264) Introduction to Information Retrieval\lecture\IR-Final-Project\src\Frontend\db.sqlite3</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="db [2]" uuid="bb387c1c-e467-42a5-a343-d9446aa5edf6">
+    <data-source source="LOCAL" name="db" uuid="ac91bebc-a07d-48bd-9a74-d6dffefe82b8">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
