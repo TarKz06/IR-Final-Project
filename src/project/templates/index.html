@@ -3,31 +3,19 @@
 {% block content %}
 {% if not current_user.is_authenticated %}
 <h1 class="title">
-  Food suggestion
+  Menu suggestions for today
 </h1>
 <h2 class="subtitle">
-  Please login to use our application
+  Please login first
 </h2>
 {% endif %}
 {% if current_user.is_authenticated %}
 <h1 class="title">
-  Food suggestion Today!!
+  Menu suggestions for today
 </h1>
-<h2 class="subtitle">
-  Please enjoy
-</h2>
-<ul>
-  <div class="columns is-gapless	">
-    <div class="column has-background-white">
-      <p class="box">Food name</p>
-    </div>
-    <div class="column has-background-white">
-      <p class="box">Food Picture</p>
-    </div>
-    <div class="column ">
 
-    </div>
-  </div>
+<ul>
+
   {% with messages = get_flashed_messages() %}
   {% if messages %}
   <div class="notification is-danger">
@@ -37,17 +25,13 @@
   {% endwith %}
   {% for item in data %}
 
-  <div class="columns ">
-    <div class="column has-text-left title">
-      {{item.Title}}
-    </div>
-    <div class="column">
 
-      <img src="../static/Food_Images/{{item.Image_Name}}">
-
-    </div>
-    <div class="column is-align-self-center">
-      <form action="/add-favorite" method="POST">
+  <a href="" class="block overflow-hidden rounded-2xl">
+  <img class="object-cover w-full h-56" src="../static/Food_Images/{{item.Image_Name}}" />
+  <div class="p-4 bg-gray-900">
+    <h5 class="text-sm text-white">{{item.Title}}</h5>
+<!--    <p class="mt-1 text-xs text-gray-500">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum nobis aliquid accusamus? Sint, sequi voluptas.</p>-->
+        <form action="/add-favorite" method="POST">
         <div class="control">
           <input name="foodTitle" value="{{item.Title}}" hidden>
           <input name="userID" value="{{userid}}" hidden>
@@ -55,10 +39,9 @@
           <button class="button is-link has-background-primary">Add to favorite</button>
         </div>
       </form>
-
-    </div>
   </div>
-
+</a>
+<br/>
   {% endfor %}
 
 </ul>
