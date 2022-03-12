@@ -15,6 +15,38 @@
   </div>
 <ul>
 
+<form action="/searcall" method="POST">
+<a class="flex items-center justify-between px-5 py-3 transition-colors bg-indigo-600 border border-indigo-600 rounded-lg hover:bg-transparent group focus:outline-none focus:ring" >
+  <span class="font-medium text-white transition-colors group-active:text-indigo-500 group-hover:text-indigo-600">
+          <input name="searcbyname" value=true hidden>
+          <input name="getin" value=true hidden>
+          <button >Find Food name</button>
+  </span>
+  <span class="flex-shrink-0 p-2 ml-4 text-indigo-600 bg-white border border-current rounded-full group-active:text-indigo-500">
+    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+    </svg>
+  </span>
+</a>
+</form>
+<form action="/searcall" method="POST">
+<a class="flex items-center justify-between px-5 py-3 transition-colors bg-indigo-600 border border-indigo-600 rounded-lg hover:bg-transparent group focus:outline-none focus:ring" >
+  <span class="font-medium text-white transition-colors group-active:text-indigo-500 group-hover:text-indigo-600">
+          <input name="searcbyingredient" value=true hidden>
+          <input name="getin" value=true hidden>
+          <button >Find Food ingredient</button>
+  </span>
+  <span class="flex-shrink-0 p-2 ml-4 text-indigo-600 bg-white border border-current rounded-full group-active:text-indigo-500">
+    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+    </svg>
+  </span>
+</a>
+</form>
+
+
+
+
 {% with messages = get_flashed_messages() %}
 {% if messages[0]==1 %}
   <div class="flex items-center justify-center p-4 text-white bg-green-600 rounded" role="alert">
