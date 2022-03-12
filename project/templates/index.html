@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if not current_user.is_authenticated %}
+
+<h2 class="subtitle">
+  Please login first
+</h2>
+{% endif %}
+{% if current_user.is_authenticated %}
+    <div class="max-w-3xl mx-auto text-center my-10">
+      <h1 class="text-3xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-r from-green-300 via-blue-500 to-purple-600">
+        Menu suggestion for today
+      </h1>
+  </div>
+<ul>
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+
+
+  <div class="flex items-center justify-center p-4 text-white bg-red-600 rounded" role="alert">
+  <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+
+  <h3 class="ml-3 text-sm font-medium">
+    {{ messages[0] }}
+  </h3>
+</div>
+
+  {% endif %}
+  {% endwith %}
+  {% for item in data %}
+
+  <br/>
+  <a href="" class="block overflow-hidden rounded-2xl">
+  <img class="object-cover w-full h-56" src="../static/Food_Images/{{item.Image_Name}}.jpg" />
+  <div class="p-4 bg-gray-900">
+    <h5 class="text-sm text-white">{{item.Title}}</h5>
+<!--    <p class="mt-1 text-xs text-gray-500">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum nobis aliquid accusamus? Sint, sequi voluptas.</p>-->
+
+        <form action="/add-favorite" method="POST">
+        <div class="control">
+          <input name="foodTitle" value="{{item.Title}}" hidden>
+          <input name="userID" value="{{userid}}" hidden>
+          <input name="foodPicture" value="{{item.Image_Name}}" hidden>
+          <div>.</div>
+          <button class="button is-link has-background-primary"><svg class="h-8 w-8 text-red-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />sdfsdf</svg></button>
+        </div>
+      </form>
+  </div>
+</a>
+<br/>
+  {% endfor %}
+
+</ul>
+{% endif %}
+{% endblock %}
