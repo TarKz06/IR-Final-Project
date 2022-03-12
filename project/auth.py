@@ -41,24 +41,24 @@ def signup_post():
     password = request.form.get('password')
     user = User.query.filter_by(email=email).first()
     repassword = request.form.get('re-password')
-    if email == "":
-        flash('Please fill out the information completely.')
-        return redirect(url_for('auth.signup'))
-    if name == "":
-        flash('Please fill out the information completely.')
-        return redirect(url_for('auth.signup'))
-    if password == "":
-        flash('Please fill out the information completely.')
-        return redirect(url_for('auth.signup'))
-    if repassword == "":
-        flash('Please fill out the information completely.')
-        return redirect(url_for('auth.signup'))
-    if password != repassword:
-        flash('your password are not match')
-        return redirect(url_for('auth.signup'))
-    if user:
-        flash('Email address already exists.')
-        return redirect(url_for('auth.signup'))
+    # if email == "":
+    #     flash('Please fill out the information completely.')
+    #     return redirect(url_for('auth.signup'))
+    # if name == "":
+    #     flash('Please fill out the information completely.')
+    #     return redirect(url_for('auth.signup'))
+    # if password == "":
+    #     flash('Please fill out the information completely.')
+    #     return redirect(url_for('auth.signup'))
+    # if repassword == "":
+    #     flash('Please fill out the information completely.')
+    #     return redirect(url_for('auth.signup'))
+    # if password != repassword:
+    #     flash('your password are not match')
+    #     return redirect(url_for('auth.signup'))
+    # if user:
+    #     flash('Email address already exists.')
+    #     return redirect(url_for('auth.signup'))
 
     new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
 

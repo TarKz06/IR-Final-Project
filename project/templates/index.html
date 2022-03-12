@@ -15,20 +15,28 @@
   </div>
 <ul>
 
-  {% with messages = get_flashed_messages() %}
-  {% if messages %}
-
-
-  <div class="flex items-center justify-center p-4 text-white bg-red-600 rounded" role="alert">
+{% with messages = get_flashed_messages() %}
+{% if messages[0]==1 %}
+  <div class="flex items-center justify-center p-4 text-white bg-green-600 rounded" role="alert">
   <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>
 
   <h3 class="ml-3 text-sm font-medium">
-    {{ messages[0] }}
+    This menu already add in favorite list.
   </h3>
 </div>
+  {% endif %}
+  {% if messages[0]==0 %}
+   <div class="flex items-center justify-center p-4 text-white bg-red-600 rounded" role="alert">
+  <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
 
+  <h3 class="ml-3 text-sm font-medium">
+    This menu already have in favorite list.
+  </h3>
+</div>
   {% endif %}
   {% endwith %}
   {% for item in data %}
