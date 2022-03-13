@@ -21,17 +21,50 @@ WebUI.openBrowser('')
 
 WebUI.navigateToUrl('http://127.0.0.1:5000/')
 
-WebUI.click(findTestObject('Object Repository/Page_Flask Auth Example/a_Sign Up'))
+WebUI.click(findTestObject('Object Repository/Page_Flask Auth Example/a_Sign Up (1)'))
 
-WebUI.setText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your email_email'), 'prin@gmail.com')
+WebUI.setText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your email_email (6)'), 'prin@gmail.com')
 
-WebUI.setText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your name_name'), 'pluk')
+WebUI.setText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your name_name (1)'), 'pluk')
 
-WebUI.setEncryptedText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your password_password'), 'iGDxf8hSRT4=')
+WebUI.setEncryptedText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your password_password (6)'), 'iGDxf8hSRT4=')
 
-WebUI.setEncryptedText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your re-password_re-password'), 'iGDxf8hSRT4=')
+WebUI.setEncryptedText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your re-password_re-password (1)'), 
+    'iGDxf8hSRT4=')
 
-WebUI.click(findTestObject('Object Repository/Page_Flask Auth Example/button_Sign Up'))
+WebUI.click(findTestObject('Object Repository/Page_Flask Auth Example/button_Sign Up (1)'))
+
+WebUI.closeBrowser()
+
+WebUI.openBrowser('')
+
+WebUI.navigateToUrl('http://127.0.0.1:5000/')
+
+WebUI.click(findTestObject('Object Repository/Page_Flask Auth Example/a_Sign Up (1)'))
+
+WebUI.setText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your email_email (6)'), 'prin2814@gmail.com')
+
+WebUI.setText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your name_name (1)'), 'plook')
+
+WebUI.setEncryptedText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your password_password (6)'), 'rW9vhuzPudMFJ91kzAKOCA==')
+
+WebUI.setEncryptedText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your re-password_re-password (1)'), 
+    'rW9vhuzPudMFJ91kzAKOCA==')
+
+WebUI.click(findTestObject('Object Repository/Page_Flask Auth Example/button_Sign Up (1)'))
+
+WebUI.click(findTestObject('Object Repository/Page_Flask Auth Example/a_Sign Up (1)'))
+
+WebUI.setText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your email_email (6)'), 'pluk@gmail.com')
+
+WebUI.setText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your name_name (1)'), 'prin')
+
+WebUI.setEncryptedText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your password_password (6)'), 'rW9vhuzPudMFJ91kzAKOCA==')
+
+WebUI.setEncryptedText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your re-password_re-password (1)'), 
+    'rW9vhuzPudMFJ91kzAKOCA==')
+
+WebUI.click(findTestObject('Object Repository/Page_Flask Auth Example/button_Sign Up (1)'))
 
 WebUI.closeBrowser()
 
