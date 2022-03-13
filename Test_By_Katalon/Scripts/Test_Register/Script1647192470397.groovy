@@ -17,3 +17,21 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
+WebUI.openBrowser('')
+
+WebUI.navigateToUrl('http://127.0.0.1:5000/')
+
+WebUI.click(findTestObject('Object Repository/Page_Flask Auth Example/a_Sign Up'))
+
+WebUI.setText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your email_email'), 'prin@gmail.com')
+
+WebUI.setText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your name_name'), 'pluk')
+
+WebUI.setEncryptedText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your password_password'), 'iGDxf8hSRT4=')
+
+WebUI.setEncryptedText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your re-password_re-password'), 'iGDxf8hSRT4=')
+
+WebUI.click(findTestObject('Object Repository/Page_Flask Auth Example/button_Sign Up'))
+
+WebUI.closeBrowser()
+

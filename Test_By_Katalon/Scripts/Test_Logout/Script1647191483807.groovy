@@ -19,5 +19,19 @@ import org.openqa.selenium.Keys as Keys
 
 WebUI.openBrowser('')
 
-WebUI.navigateToUrl('')
+WebUI.navigateToUrl('http://127.0.0.1:5000/')
+
+WebUI.click(findTestObject('Object Repository/Page_Flask Auth Example/a_Login (1)'))
+
+WebUI.setText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your email_email (2)'), 'prin@gmail.com')
+
+WebUI.setEncryptedText(findTestObject('Object Repository/Page_Flask Auth Example/input_Your password_password (2)'), 'iGDxf8hSRT4=')
+
+WebUI.click(findTestObject('Object Repository/Page_Flask Auth Example/input_Your password_remember (1)'))
+
+WebUI.click(findTestObject('Object Repository/Page_Flask Auth Example/button_Login to your account (1)'))
+
+WebUI.click(findTestObject('Object Repository/Page_Flask Auth Example/a_Logout'))
+
+WebUI.closeBrowser()
 
