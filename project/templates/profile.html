@@ -1,7 +1,62 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
-  Welcome, {{ name }}!!!
-</h1>
+
+<div class="rounded-3xl overflow-hidden shadow-xl max-w-xs my-3 bg-blue-500">
+  	<img src="https://www.online-station.net/wp-content/uploads/2021/05/Ryomen-Sukuna.jpg" class="w-full" />
+	<div class="text-center px-3 pb-6 pt-2">
+		<h3 class="text-white text-sm bold font-sans">{{ name }}</h3>
+		<p class="mt-2 font-sans font-light text-white">Hello, i'm from another the other side!</p>
+	</div>
+  	<div class="flex justify-center pb-3 text-white">
+      <div class="text-center mr-3 border-r pr-3">
+        <h2>2</h2>
+        <span>Fevorite</span>
+      </div>
+      <div class="text-center">
+        <h2>2</h2>
+        <span>unfavorite</span>
+      </div>
+  	</div>
+</div>
+
+
+
+
+
+
+
+
+
+  <aside
+  class="fixed z-50 flex items-center justify-center px-5 py-3 text-white bg-black rounded-lg bottom-4 right-4"
+>
+  <a
+    href="/new-thing"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="text-sm font-medium hover:opacity-75"
+  >
+    Hey! Welcome, {{ name }}!!! 👋
+  </a>
+
+  <button
+    class="p-1 ml-3 rounded bg-white/20 hover:bg-white/10"
+    aria-label="Dismiss Popup"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-4 h-4"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fillRule="evenodd"
+        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+        clipRule="evenodd"
+      />
+    </svg>
+  </button>
+</aside>
+
 {% endblock %}

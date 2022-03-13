@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 <dic class="is-align-items-start">
-    <h1 class="title">
-        Find your DISH
-    </h1>
+        <div class="max-w-3xl mx-auto text-center my-10">
+      <h1 class="text-3xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-r from-green-300 via-blue-500 to-purple-600">
+        Search Menu
+      </h1>
+  </div>
     <div class="container is-max-desktop mb-5 is-align-self-center">
         {% if searcbyname %}
-        <form action="/searcall" method="POST">
+        <form  class="text-lg font-medium" action="/searcall" method="POST">
             <div class="control">
                 <div class="columns is-align-items-center">
                     <div class="column is-four-fifths">
@@ -17,7 +19,8 @@
                             placeholder="Search by name" value="{{inputword}}">
                     </div>
                     <div>
-                        <button class="button is-success is-light ">search</button>
+                                            <br>
+            <button class="inline-block px-12 py-3 text-sm font-medium text-white bg-indigo-600 border border-indigo-600 rounded active:text-indigo-500 hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring">search</button>
                     </div>
                 </div>
             </div>
@@ -25,37 +28,81 @@
         <form action="/searcall" method="POST">
             <div>
                 {% if suggestword != "" %}
-                <div class="level-left mb-5 is-align-self-center">
-                    <div class="level-item has-text-centered">or do you mean:</div>
-                    <div class="level-item has-text-centered">
-                        <input name="inputpage" value=0 hidden>
-                        <input name="searcbyname" value=true hidden>
-                        <input name="suggestwordinput" value="{{suggestword}}" hidden>
-                        <button class="button is-rounded is-small">{{suggestword}}</button>
-                    </div>
-                </div>
+                <div
+  class="flex items-center justify-between gap-4 p-4 border rounded text-sky-700 border-sky-900/10 bg-sky-50"
+  role="alert"
+>
+  <div class="flex items-center gap-4">
+    <span class="p-2 text-white rounded-full bg-sky-600">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-5 h-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+    </span>
+
+    <p>
+      <strong class="text-sm font-medium"> Info! </strong>
+
+      <span class="block text-xs opacity-90">
+          <input name="inputpage" value=0 hidden>
+          <input name="searcbyname" value=true hidden>
+          <input name="suggestwordinput" value="{{suggestword}}" hidden>
+          <button class="button is-rounded is-small">May be : {{suggestword}} ???</button>
+      </span>
+    </p>
+  </div>
+
+  <button class="opacity-90" type="button">
+    <span class="sr-only"> Close </span>
+
+    <svg
+      class="w-4 h-4"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+        clip-rule="evenodd"
+      />
+    </svg>
+  </button>
+</div>
+
                 {% endif %}
             </div>
         </form>
         {% if result != "" %}
-        <div>found: {{ result }} result</div>
+           <h2 class="text-3xl font-bold tracking-tight sm:text-xl">
+         found: {{ result }} Menu
+        </h2>
         {% endif %}
     </div>
     {% endif %}
 
     {% if searcbyingredient %}
-    <form action="/searcall" method="POST">
-        <div class="control">
-            <div class="columns is-align-items-center">
-                <div class="column is-four-fifths">
+    <form class="text-lg font-medium" action="/searcall" method="POST">
+
+
                     <input name="inputpage" value=0 hidden>
                     <input name="suggestwordinput" value="" hidden>
                     <input name="searcbyingredient" value=true hidden>
                     <input class="input is-rounded " type="text" id="inputword" name="inputword"
                         placeholder="Search by ingredient" value="{{inputword}}">
-                </div>
-                <div>
-                    <button class="button is-success is-light ">search</button>
+                    <br>
+                    <br>
+            <button class="inline-block px-12 py-3 text-sm font-medium text-white bg-indigo-600 border border-indigo-600 rounded active:text-indigo-500 hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring">search</button>
                 </div>
             </div>
         </div>
@@ -63,63 +110,88 @@
     <form action="/searcall" method="POST">
         <div>
             {% if suggestword != "" %}
-            <input name="suggestwordinput" value="{{suggestword}}" hidden>
-            <div class="level-left mb-5 is-align-self-center">
-                <div class="level-item has-text-centered">or do you mean:</div>
-                <div class="level-item has-text-centered">
-                    <input name="inputpage" value=0 hidden>
-                    <input name="searcbyingredient" value=true hidden>
-                    <button class="button is-rounded is-small">{{suggestword}}</button>
-                </div>
+                           <div
+  class="flex items-center justify-between gap-4 p-4 border rounded text-sky-700 border-sky-900/10 bg-sky-50"
+  role="alert"
+>
+  <div class="flex items-center gap-4">
+    <span class="p-2 text-white rounded-full bg-sky-600">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-5 h-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+    </span>
+
+    <p>
+      <strong class="text-sm font-medium"> Info! </strong>
+
+      <span class="block text-xs opacity-90">
+          <input name="inputpage" value=0 hidden>
+          <input name="searcbyingredient" value=true hidden>
+          <input name="suggestwordinput" value="{{suggestword}}" hidden>
+          <button class="button is-rounded is-small">May be : {{suggestword}} ???</button>
+      </span>
+    </p>
+  </div>
+
+  <button class="opacity-90" type="button">
+    <span class="sr-only"> Close </span>
+
+    <svg
+      class="w-4 h-4"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+        clip-rule="evenodd"
+      />
+    </svg>
+  </button>
+</div>
+
+                {% endif %}
             </div>
-            {% endif %}
-        </div>
-    </form>
-    {% if result != "" %}
-    <div>found: {{ result }} result</div>
-    {% endif %}
+        </form>
+        {% if result != "" %}
+     <h2 class="text-3xl font-bold tracking-tight sm:text-xl">
+         found: {{ result }} Menu
+        </h2>
+        {% endif %}
     </div>
     {% endif %}
 
     {% if data != "" %}
     <div class="columns is-multiline mb-5">
         {% for item in data %}
-        <div class="column is-one-quarter is-mobile">
-          <div class="card">
-            <header class="card-header" style="height:60px">
-              <p class="card-header-title">
-                {{item.foodTitle}}
-              </p>
-            </header>
-            <div class="card-content">
-              <div class="content">
-                <img src="../static/Food_Images/{{item.foodPicture}}.jpg">
-              </div>
-            </div>
-            <div class="columns is-desktop">
-              <div class="column">
-                <form action="/readindetails" method="POST">
-                  <input name="foodTitle" value="{{item.foodTitle}}" hidden>
-                  <button class="button is-link is-inverted ">Read</button>
-                </form>
-              </div>
-              <div class="column">
-                <form action="/add-favorite" method="POST">
-                  <div class="control">
-                    <input name="foodTitle" value="{{item.foodTitle}}" hidden>
-                    <input name="userID" value="{{userid}}" hidden>
-                    <input name="foodPicture" value="{{item.foodPicture}}" hidden>
-                    <button class="button is-inverted">
-                      <span class="icon has-text-danger">
-                        <i class="fa fa-light fa-heart"></i>
-                      </span>
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
+       <a href="" class="block overflow-hidden rounded-2xl">
+  <img class="object-cover w-full h-56" src="../static/Food_Images/{{item.foodPicture}}.jpg" />
+  <div class="p-4 bg-gray-900">
+    <h5 class="text-sm text-white">{{item.foodTitle}}</h5>
+        <form action="/add-favorite" method="POST">
+        <div class="control">
+          <input name="foodTitle" value="{{item.Title}}" hidden>
+          <input name="userID" value="{{userid}}" hidden>
+          <input name="foodPicture" value="{{item.Image_Name}}" hidden>
+          <div>.</div>
+          <button class="button is-link has-background-primary"><svg class="h-8 w-8 text-red-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />sdfsdf</svg></button>
         </div>
+      </form>
+  </div>
+</a>
+       <br>
         {% endfor %}
       </div>
         <div>page {{ page+1 }} of {{ allpage }}</div>
