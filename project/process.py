@@ -59,11 +59,10 @@ def exampleoutput(dataFrame):
                          "Title": data.at[i, 'Title'],
                          "Image_Name": data.at[i, 'Image_Name']})
 
-    print('success create json example')
+    print('success gen  example')
     return tempJson
 
 def findfooddetails(dataframe, inputword):
-    print("Search food details is running...")
     data = dataframe
     foodname = inputword
     print(foodname)
@@ -126,7 +125,6 @@ def findfooddetails(dataframe, inputword):
 #     return dataTfidf
 
 def searchtfidf(inputword,df_new,where):
-    print("TF-IDF is running...")
     vectorizer = TfidfVectorizer(ngram_range=(1, 2))
     X = vectorizer.fit_transform(df_new[where])
     print(X.shape)
@@ -142,7 +140,6 @@ def searchtfidf(inputword,df_new,where):
     return tfidfJson
 
 def favoritesearchtfidf(inputword,df_new):
-    print("TF-IDF is running...")
     vectorizer = TfidfVectorizer(ngram_range=(1, 2))
     X = vectorizer.fit_transform(df_new['foodTitle'])
     print(X.shape)
